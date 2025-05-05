@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar NumPy Lanjutan</title>
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --bg-light: #ffffff;
+            --text-dark: #c9d1d9;
+            --text-light: #000000;
+            --primary: #58a6ff;
+            --header-dark: #161b22;
+            --header-light: #f0f0f0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.4s, color 0.4s;
+        }
+
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        body.light-mode {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            color: var(--primary);
+        }
+
+        pre {
+            background-color: #161b22;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .toggle-theme {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .slider {
+            width: 50px;
+            height: 25px;
+            background-color: gray;
+            border-radius: 25px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .slider::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 19px;
+            height: 19px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .slider.light::before {
+            transform: translateX(25px);
+        }
+
+        .icon {
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="toggle-theme">
+        <span class="icon" id="theme-icon">🌙</span>
+        <div class="slider" onclick="toggleTheme()" id="slider"></div>
+    </div>
+
+    <header>
+        <h1>Belajar NumPy Lanjutan</h1>
+    </header>
+    <nav>
+        <a href="#matrix-operations">Matrix</a>
+        <a href="#set-operations">Set</a>
+        <a href="#vectorization">Vektorisasi</a>
+        <a href="#boolean-indexing">Boolean Indexing</a>
+        <a href="#fancy-indexing">Fancy Indexing</a>
+        <a href="#broadcasting">Broadcasting</a>
+    </nav>
+    <main>
+        <section id="matrix-operations">
+            <h2>Operasi Matriks NumPy</h2>
+            <p>NumPy menyediakan operasi matriks seperti penjumlahan, pengurangan, dan perkalian.</p>
+            <pre>
+import numpy as np
+
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+C = A + B  # Penjumlahan
+print(C)
+
+D = np.dot(A, B)  # Perkalian matriks
+print(D)
+            </pre>
+        </section>
+        <section id="set-operations">
+            <h2>Operasi Set NumPy</h2>
+            <p>Melakukan operasi himpunan seperti union, intersection, dan difference.</p>
+            <pre>
+a = np.array([1, 2, 3, 4])
+b = np.array([3, 4, 5, 6])
+print(np.union1d(a, b))       # Gabungan
+print(np.intersect1d(a, b))   # Irisan
+print(np.setdiff1d(a, b))     # Selisih
+            </pre>
+        </section>
+        <section id="vectorization">
+            <h2>Vektorisasi NumPy</h2>
+            <p>Melakukan operasi langsung antar elemen array tanpa loop eksplisit.</p>
+            <pre>
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+print(a + b)      # Penjumlahan
+print(a ** 2)     # Pangkat dua
+            </pre>
+        </section>
+        <section id="boolean-indexing">
+            <h2>Boolean Indexing</h2>
+            <p>Memfilter elemen array berdasarkan kondisi.</p>
+            <pre>
+a = np.array([1, 2, 3, 4, 5])
+print(a[a > 3])  # Hanya elemen > 3
+            </pre>
+        </section>
+        <section id="fancy-indexing">
+            <h2>Fancy Indexing</h2>
+            <p>Mengakses banyak elemen dengan daftar indeks.</p>
+            <pre>
+a = np.array([10, 20, 30, 40, 50])
+indices = [1, 3, 4]
+print(a[indices])
+            </pre>
+        </section>
+        <section id="broadcasting">
+            <h2>Broadcasting</h2>
+            <p>Memungkinkan operasi antar array dengan bentuk berbeda.</p>
+            <pre>
+a = np.array([1, 2, 3])
+b = np.array([[10], [20], [30]])
+print(a + b)
+            </pre>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Belajar NumPy. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const slider = document.getElementById('slider');
+            const icon = document.getElementById('theme-icon');
+
+            if (body.classList.contains("dark-mode")) {
+                body.classList.remove("dark-mode");
+                body.classList.add("light-mode");
+                slider.classList.add("light");
+                icon.textContent = "☀️";
+            } else {
+                body.classList.remove("light-mode");
+                body.classList.add("dark-mode");
+                slider.classList.remove("light");
+                icon.textContent = "🌙";
+            }
+        }
+    </script>
+</body>
+</html>
